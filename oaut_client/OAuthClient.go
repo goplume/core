@@ -415,7 +415,7 @@ func (this *OAuthClient) CreateHMToken(
             }
         }
         //err := fault.IntegratrionExceptionClientErrorR(response)
-        errg := fault.ExceptionInternalErrorE(nil)
+        errg := fault.ExceptionInternalError("")
         //err = errors.New(http.StatusText(response.StatusCode()))
         return nil, errg
     }
