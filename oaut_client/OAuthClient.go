@@ -291,15 +291,21 @@ func (this *OAuthClient) CreateMToken(
 		}
 	}
 
-	//body := this.formdataToBody(oauthParamsForm)
+	body := this.formdataToBody(oauthParamsForm)
 
 	this.HttpClient.SetLogger(rlog)
 	response, erri := this.HttpClient.R().
-		//EnableTrace().
-		//SetHeader("Content-Type", "application/x-www-form-urlencoded").
-		//SetBody(body).
-		SetFormData(oauthParamsForm).
-		Post(this.GetTokenURL)
+		EnableTrace().
+		SetHeader("Content-Type", "application/x-www-form-urlencoded").
+		//SetHeader("Content-Type", "multipart/form-data").
+		SetBody(body).
+        Post(this.GetTokenURL)
+
+    //response, erri := this.HttpClient.R().
+    //    EnableTrace().
+    //    SetHeader("Content-Type", "application/x-www-form-urlencoded").
+		//SetFormData(oauthParamsForm).
+		//Post(this.GetTokenURL)
 
 	//rlog.Debug(response.Request.TraceInfo())
 
