@@ -300,7 +300,8 @@ func (this *OAuthClient) CreateMToken(
 		SetBody(body).
         Post(this.GetTokenURL)
 */
-    response, erri := this.HttpClient.R().
+    //response, erri := this.HttpClient.R().
+    response, erri := resty.New().R().
        EnableTrace().
        SetHeader("Content-Type", "application/x-www-form-urlencoded").
 		SetFormData(oauthParamsForm).
