@@ -217,8 +217,8 @@ func (this *OAuthClient) CreateToken(
     token *OAuthToken, err error,
 ) {
 
-    authToken, err := this.CreateHMToken(
-    //authToken, err := this.CreateMToken(
+    //authToken, err := this.CreateHMToken(
+    authToken, err := this.CreateMToken(
         rlog,
         OAuthParams{
             Grant_type:    this.Scopes[scope].GrantType,
@@ -297,15 +297,7 @@ func (this *OAuthClient) CreateMToken(
 
     this.HttpClient.SetLogger(rlog)
 
-    /*	body := this.formdataToBody(oauthParamsForm)
-    	response, erri := this.HttpClient.R().
-    		EnableTrace().
-    		SetHeader("Content-Type", "application/x-www-form-urlencoded").
-    		SetBody(body).
-            Post(this.GetTokenURL)
-    */
-    //response, erri := this.HttpClient.R().
-    response, erri := resty.New().R().
+    response, erri := this.HttpClient.R().
         EnableTrace().
         SetHeader("Content-Type", "application/x-www-form-urlencoded").
         SetFormData(oauthParamsForm).
